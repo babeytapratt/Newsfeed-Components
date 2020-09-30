@@ -1,6 +1,6 @@
 // This is the data we will be using to create our articles. Look at it, then proceed to line 93.
-// OPTIONAL: if you're feeling adventurous, try to make this data an export from a different module, and import it here.
-// You can read about ES6 modules here: https://exploringjs.com/es6/ch_modules.html#sec_basics-of-es6-modules
+// OPTIONAL: if
+// You can read about ES6 modules here: https://exploringjs.com/es6/ you're feeling adventurous, try to make this data an export from a different module, and import it here.ch_modules.html#sec_basics-of-es6-modules
 const data = [
   {
     title: 'Lambda School Students: "We\'re the best!"',
@@ -38,9 +38,9 @@ const data = [
         mewing kittens Remus Lupin. Palominos scarlet train black robes, Metamorphimagus Niffler dead easy second bedroom. Padma
         and Parvati Sorting Hat Minister of Magic blue turban remember my last.`,
 
-    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights 
-        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven 
-        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot 
+    thirdParagraph: `Toad-like smile Flourish and Blotts he knew I’d come back Quidditch World Cup. Fat Lady baubles banana fritters fairy lights
+        Petrificus Totalus. So thirsty, deluminator firs’ years follow me 12 inches of parchment. Head Boy start-of-term banquet Cleansweep Seven
+        roaring lion hat. Unicorn blood crossbow mars is bright tonight, feast Norwegian Ridgeback. Come seek us where our voices sound, we cannot
         sing above the ground, Ginny Weasley bright red. Fanged frisbees, phoenix tears good clean match.`
   },
   {
@@ -67,8 +67,8 @@ const data = [
         consectetur adipiscing elit. Nidoran Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nidorino Lorem ipsum dolor
         sit amet, consectetur adipiscing elit. Nidoking Lorem ipsum`,
 
-    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel 
-        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James 
+    thirdParagraph: `Gotta catch 'em all Horsea gym Ninjask Absol Sinnoh Poliwag. Gotta catch 'em all Youngster wants to fight Soda Pop Floatzel
+        Leech Life Seismitoad Ariados. Earthquake Pokemon Glitch City Tail Whip Skitty Ekans Dialga. Ut aliquip ex ea commodo consequat James
         Castform Lotad the power that's inside Burnt Berry Makuhita. Ghost Ariados Corphish Dusclops Golbat Gligar Zweilous.`
   },
   {
@@ -88,7 +88,51 @@ const data = [
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
   }
 ];
+  const articleMaker = document.querySelector('.articles')
+  
+  data.forEach((item) =>  {
+    articleMaker.appendChild(makeArticle(item.title, item.date, item.firstParagraph, item.secondParagraph, item.thirdParagraph));
+    });
 
+  function makeArticle(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+
+    const article = document.createElement('div')
+    const articleTitle = document.createElement('h2')
+    const articleDate = document.createElement('p')
+    const articleParagraph1 = document.createElement('p')
+    const articleParagraph2 = document.createElement('p')
+    const articleParagraph3 = document.createElement('p')
+    const expandButtons = document.createElement('span')
+
+    article.appendChild(articleTitle)
+    article.appendChild(articleDate)
+    article.appendChild(articleParagraph1)
+    article.appendChild(articleParagraph2)
+    article.appendChild(articleParagraph3)
+    article.appendChild(expandButtons)
+
+    article.classList.add('article', 'article-open')
+    articleTitle.classList.add('article-title')
+    articleDate.classList.add('article-date')
+    articleParagraph1.classList.add('article-paragraph-1')
+    articleParagraph2.classList.add('article-paragraph-2')
+    articleParagraph3.classList.add('article-paragraph-3')
+    expandButtons.classList.add('expandButton')
+
+    articleTitle.textContent = title
+    articleDate.textContent = date
+    articleParagraph1.textContent = firstParagraph
+    articleParagraph2.textContent = secondParagraph
+    articleParagraph3.textContent = thirdParagraph
+    expandButtons.textContent = "Expand/Close article"
+
+    expandButtons.addEventListener('click', () => {
+      article.classList.toggle('article-open')
+    });
+
+  return article;
+  }
+console.log(makeArticle('the title', 'the date', 'mad paragraph', 'fun paragraph', 'sad paragraph'))
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
   Your component is a function that takes an article object as its only argument,
@@ -102,6 +146,7 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+
 
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.

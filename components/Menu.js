@@ -8,8 +8,36 @@ let menuItems = [
   'Music',
   'Log Out'
 ];
+const menuMaker = document.querySelector('.lambda-menu')
 
-/* 
+
+
+  function makeMenu([menuItems])  {
+
+    const menu = document.createElement('div')
+    const menuButton = document.createElement('button')
+
+    menu.appendChild(menu)
+    menuButton.appendChild(menuButton)
+
+    menu.classList.add('menu', 'menu-open')
+    menuButton.classList.add('menu-button')
+
+    menu.textContent = "Lambda menu"
+    menuButton.textContent = "Open/Close menu"
+
+    menuButton.addEventListener('click', () => {
+      menu.classList.toggle('menu-open')
+    });
+    menuItems.forEach((item) =>  {
+      menuMaker.appendChild(makeMenu(item.students, item.faculty, item.whatsNew, item.techTrends, item.music, item.logOut));
+      });
+
+      return menu;
+  }
+
+  console.log(makeMenu('student menu', 'faculty menu', 'what is new', 'tech trends', 'music', 'log out' ))
+/*
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
 
   <div class="menu">
